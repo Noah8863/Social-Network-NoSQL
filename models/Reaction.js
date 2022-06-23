@@ -11,7 +11,11 @@ const reactionSchema = new mongoose.Schema({
     userName: { type: String, required: true}
     },
     {
-        
+        toJSON: {
+            getters: true,
+        },
+        id: false,
+        //Dont assign an ID to the getter
     }
 )
 
