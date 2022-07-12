@@ -14,7 +14,7 @@ module.exports = {
         try {
             const thought = await Thought.create(req.body)
             // res.status(200).json('Got a new thought!')
-            res.status(200).json(thought)
+            res.status(200).json('Thought was created successfully')
         } catch (err) {
             console.error(err)
             res.status(500).json(err)
@@ -24,15 +24,17 @@ module.exports = {
         try {
             const thought = await Thought.findOneAndUpdate(
                 {
-                    _id: req.params.id,
+                    _id: User._id,
                 },
                 {
                     ...req.body,
+
                 },
                 {
-                    new: true
+                    new: true,
                 }
             )
+            res.status(200).json(thought)
         } catch (err) {
             console.error(err)
             res.status(500).json(err)
@@ -41,9 +43,9 @@ module.exports = {
 
     async getOneThought(req, res) {
         try {
-            const Thought = await Thought.findOne({_id: req.params.id})
-            if (!Thought)res.status(404).json("No Thought with the id") 
-            res.status(200).json(Thought)
+            const thought = await Thought.findOne({_id: req.params.id})
+            if (!thought)res.status(404).json("No thought with that id!") 
+            res.status(200).json(thought)
         } catch (err) {
             console.error(err)
             res.status(500).json(err)
@@ -57,7 +59,7 @@ module.exports = {
                     _id: req.params.id,
                 }
             )
-            res.status(200).json(thought)
+            res.status(200).json('Thought was deleted!')
         } catch (err) {
             console.error(err)
             res.status(500).json(err)

@@ -3,9 +3,9 @@ const dateFormat = require('../utils/helpers');
 const reactionSchema = require('./Reaction.js')
 
 const thoughtSchema = new mongoose.Schema({
+    userName: {type: String, required: true,},
     thoughtText: {type: String, required: true, minlength: 1, maxlength: 280},
     createdAt: {type: Date, default: Date.now, get: (timestamp) => dateFormat(timestamp)},
-    userName: {type: String, required: true,},
     reactions: [reactionSchema],
     },
 {

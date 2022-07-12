@@ -24,14 +24,16 @@ module.exports = {
             const user = await User.findOneAndUpdate(
                 {
                     _id: req.params.id,
+                    
                 },
                 {
-                    ...req.body
+                    ...req.body,
                 },
                 {
                     new: true,
                 }
             )
+            res.status(200).json('User Updated')
         } catch (err) {
             console.error(err)
             res.status(500).json(err)
@@ -41,7 +43,7 @@ module.exports = {
     async getOneUser(req, res) {
         try {
             const user = await User.findOne({ _id: req.params.id })
-            if (!user) res.status(404).json("No user with the id")
+            if (!user) res.status(404).json("No user with that id!")
             res.status(200).json(user)
         } catch (err) {
             console.error(err)
@@ -73,7 +75,7 @@ module.exports = {
             if (!deletedUser) {
                 res.status(404).json('User not found')
             } else {
-                res.status(200).json(deletedUser)
+                res.status(200).json('User was successfully deleted')
             }
         } catch (err) {
             console.error(err)
