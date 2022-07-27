@@ -41,9 +41,9 @@ module.exports = {
 
     async getOneThought(req, res) {
         try {
-            const Thought = await Thought.findOne({_id: req.params.id})
-            if (!Thought)res.status(404).json("No Thought with the id") 
-            res.status(200).json(Thought)
+            const thought = await Thought.findOne({_id: req.params.id})
+            if (!thought)res.status(404).json("No Thought with the id") 
+            res.status(200).json(thought)
         } catch (err) {
             console.error(err)
             res.status(500).json(err)

@@ -22,17 +22,21 @@ module.exports = {
     async updateUser(req, res) {
         try {
             const user = await User.findOneAndUpdate(
+                //filter
                 {
                     _id: req.params.id,
                 },
+                // Actions what we want to do
                 {
                     ...req.body
                 },
+                //True on what we want to change
+                //Still work but you would get the old one back when .json(user)
                 {
                     new: true,
                 }
             )
-            res.status(200).json('User Updated')
+            res.status(200).json(user)
         } catch (err) {
             console.error(err)
             res.status(500).json(err)
@@ -81,6 +85,36 @@ module.exports = {
             res.status(500).json(err)
         }
     },
+
+    async createFriend(req, res) {
+        try {
+            //Finding the ID of the friend that we can use
+            const friend = await User.findById(req.params.friendId)
+            if (!friend) {
+                console.log('Friend not found')
+                res.status(404).json('Friend not found')
+            }
+            const user = await User.findOneAndUpdate(
+                {
+                    _id: req.params.id
+                },
+                {
+                    // $push: can have duplicates
+                    $addToSet: {
+                        friends: req.params.friendId
+                    }
+                }
+            )
+            if (!user) {
+                console.log('User not found')
+                res.status(404).json('User not found')
+            }
+        }
+        catch (err) {
+            console.error(err)
+            res.status(500).json(err)
+        }
+    }
 
 }
 
