@@ -27,6 +27,8 @@ module.exports = {
                     _id: req.params.id,
                 },
                 // Actions what we want to do
+                //Would also work with just "req.body" without the curly brackets
+                // ...req.body spreads all the data
                 {
                     ...req.body
                 },
@@ -88,6 +90,7 @@ module.exports = {
 
     async createFriend(req, res) {
         try {
+            
             //Finding the ID of the friend that we can use
             const friend = await User.findById(req.params.friendId)
             if (!friend) {
@@ -103,18 +106,54 @@ module.exports = {
                     $addToSet: {
                         friends: req.params.friendId
                     }
+                },
+                {
+                    new: true,
                 }
             )
             if (!user) {
                 console.log('User not found')
                 res.status(404).json('User not found')
             }
+            //THIS IS IMPORTANT
+            res.status(200).json(user)
         }
         catch (err) {
             console.error(err)
             res.status(500).json(err)
         }
-    }
+    },
+    async deleteFriend(req, res) {
+        try {
+            //Finding the ID of the friend that we can use
+            const friend = await User.findById(req.params.friendId)
+            if (!friend) {
+                console.log('Friend not found')
+                res.status(404).json('Friend not found')
+            }
+            const user = await User.findOneAndUpdate(
+                {
+                    _id: req.params.id
+                },
+                {
+                    //pullAll is a way of removing EVERYTHING
+                    //pullAll would do the same thing in this case becasue we are looking up the id
+                    $pull: {
+                        friends: req.params.friendId
+                    }
+                }
+            )
+            if (!user) {
+                console.log('User not found')
+                res.status(404).json('User not found')
+            }
+            res.status(200).json(user)
+        }
+        catch (err) {
+            console.error(err)
+            res.status(500).json(err)
+        }
+    },
 
 }
 

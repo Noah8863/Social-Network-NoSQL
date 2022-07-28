@@ -62,6 +62,65 @@ module.exports = {
             console.error(err)
             res.status(500).json(err)
         }
-    }
+    },
+    async addReaction(req, res) {
+        try {
+            const thoughtReaction = await Thought.findOneAndUpdate(
+                {
+                    _id: req.params.id
+                },
+                {
+                    // $push: can have duplicates
+                    $addToSet: {
+                        reactions: req.body
+                    }
+                },
+                {
+                    new: true,
+                }
+            )
+            if (!thoughtReaction) {
+                console.log('Thought not found. Could not add reaction')
+                res.status(404).json('Thought not found. Could not add reaction')
+            }
+            //THIS IS IMPORTANT
+            res.status(200).json(thoughtReaction)
+        }
+        catch (err) {
+            console.error(err)
+            res.status(500).json(err)
+        }
+    },
+    async deleteReaction(req, res) {
 
+        try {
+             
+            const thoughtReaction = await Thought.findOneAndUpdate(
+                {
+                    _id: req.params.id
+                },
+                {
+                    //pull from the array that ONLY has the reactionId that is passed though 
+                    $pull: {
+                        reactions: {
+                            reactionId: req.params.reactionId
+                        }
+                    }
+                },
+                {
+                    new: true,
+                }
+            )
+            if (!thoughtReaction) {
+                console.log('Thought not found. Could not add reaction')
+                res.status(404).json('Thought not found. Could not add reaction')
+            }
+            //THIS IS IMPORTANT
+            res.status(200).json(thoughtReaction)
+        }
+        catch (err) {
+            console.error(err)
+            res.status(500).json(err)
+        }
+    },
 }
