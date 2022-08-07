@@ -41,9 +41,11 @@
   Open the application and type in "npm run start" to start the application. Once the server is running, open up Insomnia and you'll be able to use all the GET, PUT, POST and DELETE routes for each reaction, friends list and posts 
   
   ## Walk through videos:
+  
 [noSQL-Demo.webm](https://user-images.githubusercontent.com/60634270/183273787-d6347346-d2a4-49d8-bb4a-925a2cafd07f.webm)
 
-  
+  [noSQL-Demo2.webm](https://user-images.githubusercontent.com/60634270/183274043-e37760c5-7e8c-4f05-9d65-9b0f66f92be1.webm)
+
 
   ## Contributing to this project
   Fork the repo and submit a pull request 
