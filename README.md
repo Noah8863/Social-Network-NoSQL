@@ -28,17 +28,17 @@
 
   ## Quick Description about the project 
 
-  This project tracks a users reaction, friends list and post that is all tracked through mongoDB. There is no front end for this project but has a fully functional backend 
+  This project tracks a users reaction, friends list and post that is all tracked through mongoDB. There is no front end for this project but has a fully functional backend. 
 
   ## How to install the project 
 
   To use this project, please 'git clone' the following repository link: 
 
   https://github.com/Noah8863/Social-Network-NoSQL.git 
-
+  
   ## How to use this project 
 
-  Open the application and type in "npm run start" to start the application. Once the server is running, open up Insomnia and you'll be able to use all the GET, PUT, POST and DELETE routes for each reaction, friends list and posts 
+  Open the application and type in "npm run start" to start the application. Once the server is running, open up Insomnia and you'll be able to use all the GET, PUT, POST and DELETE routes for each reaction, friends list and posts.
   
   ## Walk through videos:
   
@@ -52,7 +52,7 @@
 
   ## Main problems faced when working on the project 
  
-  I had a really tough time figuring out how to create a relational database with refs. I also had some issues with connectiong to MongoDB.  
+  I had a really tough time figuring out how to create a relational database with refs. I also had some issues with connecting to MongoDB.  
 
   ## Main take aways from the project 
 
@@ -60,7 +60,7 @@
 
   ## Tests 
 
-  NA 
+  Not tests needed
 
   ## Questions 
 
@@ -70,4 +70,4 @@
 
   Email: stacknoah99@gmail.com 
 
-  LinkedIn: Noah Hoffman
+  LinkedIn: [Noah Hoffman](https://www.linkedin.com/in/noah-hoffman-9975a7121/)
